@@ -5,8 +5,8 @@ export const copy = async () => {
   const baseDir = 'files';
   const targetDir = 'files_copy';
 
-  await access(targetDir, constants.F_OK, async (isExist) => {
-    if (!isExist) {
+  await access(targetDir, constants.F_OK, async (err) => {
+    if (!err) {
       throw new Error('FS operation failed');
     }
 

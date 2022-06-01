@@ -4,8 +4,8 @@ import {writeFile} from 'fs/promises';
 export const create = async () => {
   const newFile = 'files/fresh.txt';
 
-  await access(newFile, constants.F_OK, (isExist) => {
-    if (!isExist) {
+  await access(newFile, constants.F_OK, (err) => {
+    if (!err) {
       throw new Error('FS operation failed');
     }
 

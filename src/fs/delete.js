@@ -4,8 +4,8 @@ import {rm} from 'fs/promises';
 export const remove = async () => {
   const file = 'files/fileToRemove.txt';
 
-  await access(file, constants.F_OK, async (isExist) => {
-    if (isExist) {
+  await access(file, constants.F_OK, async (err) => {
+    if (err) {
       throw new Error('FS operation failed');
     }
 
