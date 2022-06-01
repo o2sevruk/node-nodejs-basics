@@ -10,21 +10,17 @@ export const copy = async () => {
       throw new Error('FS operation failed');
     }
 
-    try {
-      const files = await readdir(baseDir);
+    const files = await readdir(baseDir);
 
-      // Create folder if not exist
-      await mkdir(targetDir);
-      console.log('Folder was created!');
+    // Create folder if not exist
+    await mkdir(targetDir);
+    console.log('Folder was created!');
 
-      // Copy files
-      for (const file of files) {
-        await copyFile(`${baseDir}/${file}`, `${targetDir}/${file}`);
-      }
-      console.log('Files were copied!');
-    } catch (err) {
-      throw new Error(err);
+    // Copy files
+    for (const file of files) {
+      await copyFile(`${baseDir}/${file}`, `${targetDir}/${file}`);
     }
+    console.log('Files were copied!');
   });
 };
 
