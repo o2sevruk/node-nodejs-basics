@@ -10,6 +10,7 @@ const random = Math.random();
 
 let unknownObject;
 
+// Import json files isn't working in node v16, and you should start file with --experimental-json-modules flag
 if (random > 0.5) {
   unknownObject = import('./files/a.json');
 } else {
