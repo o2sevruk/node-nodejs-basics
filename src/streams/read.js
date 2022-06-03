@@ -2,9 +2,9 @@ import {createReadStream} from 'fs';
 
 export const read = async () => {
   const file = 'files/fileToRead.txt';
-  const stream = await createReadStream(file);
+  const readableStream = createReadStream(file, 'utf8');
 
-  stream.pipe(process.stdout);
+  readableStream.pipe(process.stdout);
 };
 
 read();
