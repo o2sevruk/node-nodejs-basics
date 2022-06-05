@@ -1,8 +1,13 @@
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 import {access, constants} from 'fs';
 import {readdir} from 'fs/promises';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export const list = async () => {
-  const dir = 'files';
+  const dir = `${__dirname}/files`;
 
   await access(dir, constants.F_OK, async (err) => {
     if (err) {

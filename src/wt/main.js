@@ -1,5 +1,10 @@
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 import {cpus} from 'os';
 import {Worker} from 'worker_threads';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const performCalculations = async () => {
   const cpuCores = cpus().length;
@@ -8,7 +13,7 @@ export const performCalculations = async () => {
   for (let i = 0; i < cpuCores; i++) {
     const newPromise = async () => {
       return new Promise((res) => {
-        const worker = new Worker('./worker.js', {workerData: 10 + i});
+        const worker = new Worker(`${__dirname}/worker.js`, {workerData: 10 + i});
         worker.on('message', (msg) => {
           res({
             status: 'resolved',

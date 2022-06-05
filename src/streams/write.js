@@ -1,8 +1,13 @@
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 import {createInterface} from 'readline';
 import {createWriteStream} from 'fs';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export const write = async () => {
-  const file = 'files/fileToWrite.txt';
+  const file = `${__dirname}/files/fileToWrite.txt`;
   const rl = createInterface({
     input: process.stdin,
     output: process.stdout,

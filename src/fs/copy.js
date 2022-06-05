@@ -1,9 +1,14 @@
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
 import {access, constants} from 'fs';
 import {mkdir, readdir, copyFile} from 'fs/promises';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export const copy = async () => {
-  const baseDir = 'files';
-  const targetDir = 'files_copy';
+  const baseDir = `${__dirname}/files`;
+  const targetDir = `${__dirname}/files_copy`;
 
   await access(targetDir, constants.F_OK, async (err) => {
     if (!err) {
